@@ -1,0 +1,30 @@
+<div id="product_list" >
+<h1>Listing products</h1>
+	<% @products.each do |product| %>
+		<div class=" <%= cycle('list_line_odd' , 'list_line_even' ) %>" >
+			<div class = 'list_image'>
+				<%= image_tag(product.image_url ) %>
+			</div>
+			<div class="list_description" >
+				
+					<div class="name_area" >
+						<%= product.title %></dt>
+					</div>
+						
+					<div class="desc_area">
+						<%= truncate(strip_tags(product.description), :length => 80) %></dd>
+					</div>
+			
+			</div>
+			<div class="list_actions" >
+				<%= link_to 'Show' , product %><br/>
+				<%= link_to 'Edit' , edit_product_path(product) %><br/>
+				<%= link_to 'Destroy' , product,:confirm => 'Are you sure?' ,:method => :delete %>
+			</div>
+		<br/>
+		
+	<% end %>
+	<br/>
+</div>
+<br />
+<%= link_to 'New product' , new_product_path %>
